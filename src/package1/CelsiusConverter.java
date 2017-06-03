@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CelsiusConverter extends JFrame {
 
@@ -44,20 +46,31 @@ public class CelsiusConverter extends JFrame {
 		contentPane.setLayout(null);
 		
 		tempTextField = new JTextField();
+		tempTextField.setToolTipText("\u8BF7\u8F93\u5165\u6444\u6C0F\u6E29\u5EA6");
 		tempTextField.setBounds(23, 25, 66, 21);
 		contentPane.add(tempTextField);
 		tempTextField.setColumns(10);
 		
-		JLabel celsiusLabel = new JLabel("Celsius");
+		JLabel celsiusLabel = new JLabel("\u6444\u6C0F\u5EA6");
 		celsiusLabel.setBounds(115, 28, 79, 15);
 		contentPane.add(celsiusLabel);
 		
-		JButton convertButton = new JButton("Convert");
+		JLabel fahrenheitLabel = new JLabel("\u534E\u6C0F\u6E29\u5EA6");
+		fahrenheitLabel.setBounds(115, 69, 93, 15);
+		contentPane.add(fahrenheitLabel);
+		
+		JButton convertButton = new JButton("\u8F6C\u6362");
+		convertButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				int tempFahr =(int)((Double.parseDouble(tempTextField.getText()))
+						*1.8 +32);
+				fahrenheitLabel.setText("»ªÊÏÎÂ¶ÈÎª£º"+tempFahr);
+				
+			}
+		});
 		convertButton.setBounds(10, 65, 93, 23);
 		contentPane.add(convertButton);
 		
-		JLabel fahrenheitLabel = new JLabel("Fahrenheit");
-		fahrenheitLabel.setBounds(115, 69, 93, 15);
-		contentPane.add(fahrenheitLabel);
+
 	}
 }
